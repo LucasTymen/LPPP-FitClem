@@ -19,24 +19,24 @@
   --fitclem-orange: #FF6633;
   --fitclem-peach: #FFA385;
   --fitclem-white: #FFFFFF;
-  --fitclem-black: #1A1A1A;
+  --fitclem-black: #000000;
   --fitclem-gray-light: #F9F9F9;
   --fitclem-magenta: #D81B60;
   --fitclem-lavender: #B9A9D0;
   --fitclem-pastel-pink: #FFE4E1;
   --fitclem-green: #57B894;
   --fitclem-blue: #7EB8DA;
-  /* Mapping LP */
+  /* Mapping LP — texte noir partout */
   --lp-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --lp-font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
   --lp-bg: #FFFFFF;
-  --lp-text: #1A1A1A;
+  --lp-text: #000000;
   --lp-primary: #FF6633;
   --lp-secondary: #FFA385;
   --lp-border: rgba(255, 102, 51, 0.35);
   --lp-block-bg: #F9F9F9;
-  --lp-muted: #5c5c5c;
-  --lp-heading: #1A1A1A;
+  --lp-muted: #333333;
+  --lp-heading: #000000;
   --lp-cta-text: #ffffff;
   --lp-font-delius: "Delius", cursive;
   --lp-font-sniglet: "Sniglet", system-ui, sans-serif;
@@ -92,29 +92,13 @@ html, body { overflow-x: hidden !important; }
   transform: translate(-50%, -50%) !important;
 }
 
-/* Titres — blanc sur fonds colorés ; rose/magenta sur fond blanc (éviter texte sombre) */
-h1 {
-  font-family: var(--lp-font-delius) !important;
-  font-weight: 400 !important;
-  text-transform: none !important;
-  letter-spacing: 0.5px !important;
-  color: var(--fitclem-magenta) !important;
+/* Titres — noir par défaut ; blanc sur hero vidéo/image et sections colorées */
+h1, h2, h3, h4 {
+  color: #000 !important;
 }
-/* H2, H3, H4 : Delius (cursive) et Sniglet (rounded, playful) */
-h2 {
-  font-family: var(--lp-font-delius) !important;
-  font-weight: 400 !important;
-  text-transform: none !important;
-  letter-spacing: 0.5px !important;
-  color: var(--fitclem-magenta) !important;
-}
-h3, h4 {
-  font-family: var(--lp-font-sniglet) !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  color: var(--fitclem-magenta) !important;
-}
+h1 { font-family: var(--lp-font-delius) !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0.5px !important; }
+h2 { font-family: var(--lp-font-delius) !important; font-weight: 400 !important; text-transform: none !important; letter-spacing: 0.5px !important; }
+h3, h4 { font-family: var(--lp-font-sniglet) !important; font-weight: 800 !important; text-transform: uppercase !important; letter-spacing: 1px !important; }
 h4 { font-weight: 400 !important; text-transform: none !important; }
 /* Hero : H1 et sous-titre en BLANC (priorité) */
 .hero.has-bg-video h1,
@@ -172,11 +156,100 @@ h4 { font-weight: 400 !important; text-transform: none !important; }
   color: #fff !important;
 }
 .section h2, .section .section-head, .section-num, .section-lead, .section p, .section .card,
-.pain-list, .pain-list li, .coordonnees-intro, .coordonnees-list, .mission-flash-content,
-.why-quote, .stack-label, .stack-tag, .seo-resume-card p, .seo-manque, .rapport-cta-link {
+.pain-list, .pain-list li, .coordonnees-intro, .coordonnees-list, .stack-label, .seo-resume-card p, .seo-manque, .rapport-cta-link {
   color: #fff !important;
 }
+/* Zones à fond clair (color-mix avec lp-bg blanc) → texte SOMBRE pour contraste */
+.section#services .services-panel,
+.section#services .services-panel h3,
+.section#services .services-panel p {
+  color: #000 !important;
+  background: rgba(255,255,255,0.95) !important;
+  border-left-color: var(--fitclem-magenta) !important;
+}
+.section#services .services-panel h3 { color: var(--fitclem-magenta) !important; }
+/* Services segmentés (FitClem) — boxes + infographies alternées */
+.section#services.services-segmented .services-segments { display: flex; flex-direction: column; gap: 2rem; margin-top: 1rem; }
+.section#services .services-segment-box {
+  padding: 1.5rem 2rem; background: rgba(255,255,255,0.95) !important;
+  border-radius: 16px; border-left: 4px solid var(--fitclem-magenta);
+  color: #000 !important;
+}
+.section#services .services-segment-box h3.services-segment-title { color: var(--fitclem-magenta) !important; margin: 0 0 0.75rem 0 !important; font-size: 1.1rem !important; }
+.section#services .services-segment-box .services-segment-bullets { margin: 0; padding-left: 1.25rem; color: #000 !important; }
+.section#services .services-segment-box .services-segment-bullets li { color: #000 !important; margin-bottom: 0.4rem; }
+/* PESTEL format traditionnel */
+.section#services .pestel-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1rem; margin: 0; }
+.section#services .pestel-item { display: contents; }
+.section#services .pestel-letter { font-weight: 800; color: var(--fitclem-magenta) !important; font-size: 1rem; min-width: 1.5rem; }
+.section#services .pestel-desc { color: #000 !important; font-size: 0.95rem; line-height: 1.45; }
+/* SWOT format traditionnel */
+.section#services .swot-grid { display: flex; flex-direction: column; gap: 0.6rem; margin: 0; }
+.section#services .swot-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+.section#services .swot-type { font-weight: 700; color: var(--fitclem-magenta) !important; min-width: 6rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.section#services .swot-desc { color: #000 !important; font-size: 0.95rem; line-height: 1.45; }
+/* Table concurrentiel */
+.section#services .concurrentiel-table { width: 100%; border-collapse: collapse; margin: 0; font-size: 0.95rem; }
+.section#services .concurrentiel-table th, .section#services .concurrentiel-table td { padding: 0.5rem 0.75rem; text-align: left; border: 1px solid rgba(0,0,0,0.15); color: #000 !important; }
+.section#services .concurrentiel-table th { background: rgba(216,27,96,0.12); font-weight: 700; color: var(--fitclem-magenta) !important; }
+.section#services .services-segment-infographic {
+  padding: 1.5rem; background: rgba(0,0,0,0.15) !important; border-radius: 20px;
+}
+.section#services .services-segment-infographic .services-infographic-label {
+  margin: 0 0 1rem 0 !important; font-size: 0.9rem !important; font-weight: 600 !important; text-transform: uppercase !important; color: rgba(255,255,255,0.95) !important;
+}
+.section#services .services-segment-infographic .content-player-flowchart .flow-step { color: #fff; background: rgba(255,255,255,0.2); }
+.section#services .services-segment-infographic .content-player-flowchart .flow-arrow { color: rgba(255,255,255,0.8); }
+.section#services .services-segment-infographic .content-player-dashboard .kpi-label { color: rgba(255,255,255,0.95) !important; }
+.section#services .services-segment-infographic .content-player-dashboard .kpi-bar { background: rgba(255,255,255,0.3); }
+.section#services .services-segment-infographic .key-figures-timeline {
+  display: flex; flex-direction: column; gap: 0.75rem; max-width: 320px; margin: 0 auto;
+}
+.section#services .services-segment-infographic .key-figures-timeline-item {
+  background: rgba(255,255,255,0.15) !important; border-left-color: rgba(255,255,255,0.6) !important;
+}
+.section#services .services-segment-infographic .key-figures-timeline-item .t-period,
+.section#services .services-segment-infographic .key-figures-timeline-item .t-desc { color: rgba(255,255,255,0.95) !important; }
+/* Infographie : axe de placement (matrice positionnement 2×2) */
+.section#services .positioning-matrix { max-width: 420px; margin: 0 auto; }
+.section#services .positioning-matrix .matrix-axis-x { display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; padding: 0 0.5rem; }
+.section#services .positioning-matrix .matrix-axis-y { display: flex; justify-content: space-between; font-size: 0.75rem; color: rgba(255,255,255,0.9); margin-top: 0.5rem; padding: 0 0.5rem; }
+.section#services .positioning-matrix .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0.75rem; min-height: 140px; }
+.section#services .positioning-matrix .matrix-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.75rem; background: rgba(255,255,255,0.15); border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); text-align: center; }
+.section#services .positioning-matrix .matrix-player { font-weight: 700; font-size: 0.9rem; color: #fff; }
+.section#services .positioning-matrix .matrix-player-fitclem { color: var(--fitclem-orange) !important; }
+.section#services .positioning-matrix .matrix-legend { font-size: 0.72rem; color: rgba(255,255,255,0.9); margin-top: 0.25rem; line-height: 1.2; }
+/* Infographie : diagramme concurrence */
+.section#services .competitive-diagram { display: flex; flex-direction: column; gap: 1rem; }
+.section#services .competitive-diagram .comp-flow { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.section#services .competitive-diagram .comp-node { padding: 0.75rem 1rem; background: rgba(255,255,255,0.15); border-radius: 12px; border: 1px solid rgba(255,255,255,0.3); min-width: 120px; text-align: center; }
+.section#services .competitive-diagram .comp-node-fitclem { background: rgba(255,102,51,0.35) !important; border-color: var(--fitclem-orange) !important; }
+.section#services .competitive-diagram .comp-name { display: block; font-weight: 700; font-size: 0.95rem; color: #fff; }
+.section#services .competitive-diagram .comp-desc { display: block; font-size: 0.8rem; color: rgba(255,255,255,0.9); margin-top: 0.2rem; }
+.section#services .competitive-diagram .comp-arrow { color: rgba(255,255,255,0.8); font-weight: 700; }
+.section .mission-flash,
+.section .mission-flash .tag-line,
+.section .mission-flash .mission-flash-content {
+  color: #000 !important;
+  background: rgba(255,255,255,0.92) !important;
+  border-color: var(--fitclem-magenta) !important;
+}
+.section .mission-flash .tag-line { color: var(--fitclem-magenta) !important; }
+.section .why-quote {
+  color: #000 !important;
+  background: rgba(255,255,255,0.92) !important;
+  border-left-color: var(--fitclem-magenta) !important;
+}
+.section .stack-tag {
+  color: #000 !important;
+  background: rgba(255,255,255,0.85) !important;
+  border-color: var(--fitclem-magenta) !important;
+}
 .section h2 { text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+/* Sections fond lavande/clair : renforcer ombre titre pour lisibilité */
+.section:nth-of-type(4n+3) h2, .section:nth-of-type(4n) h2 {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3) !important;
+}
 .section a:not(.cta):not(.nav-cta):not(.seo-cta) { color: rgba(255,255,255,0.95); text-decoration: underline; }
 .section a:not(.cta):not(.nav-cta):not(.seo-cta):hover { color: #fff; }
 /* Alternance nuances de rose */
@@ -1118,17 +1191,12 @@ body { color: var(--fitclem-black); }
         <section class="hero has-bg-video">
             
             
+            
             <div class="hero-bg-video">
-                <iframe
-                    src="https://www.youtube-nocookie.com/embed/u1ZrZZHOYXU?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=u1ZrZZHOYXU&amp;controls=0&amp;rel=0&amp;showinfo=0"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    title="Fond hero"
-                    aria-hidden="true"
-                ></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/u1ZrZZHOYXU?autoplay=0&amp;controls=1&amp;rel=0&amp;modestbranding=1" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Fond hero" aria-hidden="true"></iframe>
             </div>
             <a href="https://www.youtube.com/watch?v=u1ZrZZHOYXU" target="_blank" rel="noopener noreferrer" class="hero-video-fallback">Ouvrir sur YouTube</a>
+            
             
             
             
@@ -1301,34 +1369,151 @@ body { color: var(--fitclem-black); }
         
 
         
-        <section class="section content-player" id="services">
+        <section class="section content-player services-segmented" id="services">
             <div class="section-head"><span class="section-num">03</span><h2>Ce que j'offre</h2></div>
             
             <div class="rapport-cta-block">
                 <a href="/p/fitclem/rapport/" class="rapport-cta-link" target="_blank" rel="noopener noreferrer">Consulter le rapport complet (société, stratégie, SEO) →</a>
             </div>
             
-            <div class="services-tabs">
+            
+            
+            <div class="services-segments">
                 
-                <input type="radio" name="services-tab" id="service-0" checked>
-                <label for="service-0">Étude marketing</label>
                 
-                <input type="radio" name="services-tab" id="service-1" >
-                <label for="service-1">Étude SEO</label>
-                
-                <input type="radio" name="services-tab" id="service-2" >
-                <label for="service-2">Proposition KPI &amp; plan 30/60 j</label>
-                
-                <div class="services-panels">
+                <div class="services-segment-box">
+                    <h3 class="services-segment-title">PESTEL</h3>
                     
-                    <div class="services-panel"><h3>Étude marketing</h3><p>Analyse stratégique complète pour soutenir la candidature. PESTEL : réglementation compléments alimentaires et transparence influenceurs ; fitness at home en croissance ; body positive et communauté Fitfam ; UX app mobile et RGPD ; packaging éco et ingrédients naturels ; droit consommation et normes. SWOT : forces (identité fondatrice, modèle diversifié digital + physique + nutrition, discours déculpabilisant), faiblesses (dépendance fondatrice, marché compléments saturé), opportunités (Plaisirs Gourmands, rétention / programme fidélité), menaces (YouTube/TikTok gratuits, algorithmes). Porter : concurrence très forte (Nike Training, Freeletics, influenceurs), nouveaux entrants (barrières faibles en contenu, élevées en app), pouvoir clients moyen, substituts forts (salles, cours, plein air), rôle État (contrôles minceur). Concurrentiel : Trainsweateat (leader FR, app avancée — FitClem = approche plus douce), Luce Citron (nutrition — FitClem = écosystème sport + accessoires + compléments), retailers (FitClem = caution experte, routines clés en main). Growth et positionnement : alignement Ads → Landing, preuve digestible, playbook claims.</p></div>
-                    
-                    <div class="services-panel"><h3>Étude SEO</h3><p>Manque à gagner SEO estimé : 132–324 k€/an (conversion, performance, visibilité). Le site agit comme un entonnoir percé : erreurs techniques (429, lenteur), absence de H1 sur pages clés, images sans alt. Problèmes clés : performance (LCP, Speed Index), erreurs 429, H1 manquants, attributs alt. Recommandations : corriger les 429 et la performance (LCP, Speed Index), poser des H1 explicites sur chaque page cible, renseigner tous les alt pour le référencement images. Clusters sémantiques à préempter : cellulite, rétention d&#x27;eau, digestion/ballonnements, collagène marin, routine (requêtes type « Comment réduire la cellulite naturellement », « Bienfaits du SOD B Dimpless »). Copywriting : cohérence tu/nous sur tous les points de contact ; intégration preuve sociale (étude clinique, UGC) dans les pages et emails. L&#x27;étude complète est exposée ici.</p></div>
-                    
-                    <div class="services-panel"><h3>Proposition KPI &amp; plan 30/60 j</h3><p>Six KPI à piloter en priorité : CAC (par canal), CVR landing (PDP + bundle), AOV (effet bundle + upsell), LTV (repeat rate + abonnement), email revenue share, rétention / repurchase D30/D60. Plan 0–30 j : audit claims et conformité ; matrice créa (hooks × angles × preuves) ; 3 landing pages dédiées (digestion / silhouette / beauté) ; A/B tests (CTA, hook, preuve). Plan 30–60 j : séquences CRM post-achat (J+7, J+14, J+28) par objectif ; bundles et abonnements ; retargeting par objectif (pas seulement par produit). Phrase de synthèse pour l&#x27;entretien : « FitClem a une acquisition très orientée performance et preuve sociale ; mon rôle serait de sécuriser le scale (compliance + cohérence responsable), d&#x27;aligner ads et landing par pain point, puis d&#x27;augmenter l&#x27;AOV et la LTV via bundles, abonnement et CRM. »</p></div>
+                    <div class="pestel-grid">
+                        <div class="pestel-item"><span class="pestel-letter">P</span><span class="pestel-desc">Réglementations compléments alimentaires, transparence influenceurs</span></div><div class="pestel-item"><span class="pestel-letter">E</span><span class="pestel-desc">Fitness at home en croissance ; arbitrage budgétaire (solutions digitales)</span></div><div class="pestel-item"><span class="pestel-letter">S</span><span class="pestel-desc">Body positive, bien-être holistique, communauté Fitfam</span></div><div class="pestel-item"><span class="pestel-letter">T</span><span class="pestel-desc">UX app mobile, RGPD</span></div><div class="pestel-item"><span class="pestel-letter">E</span><span class="pestel-desc">Packaging éco, ingrédients naturels</span></div><div class="pestel-item"><span class="pestel-letter">L</span><span class="pestel-desc">Droit consommation (abonnements), normes accessoires sport</span></div>
+                    </div>
                     
                 </div>
+                
+                
+                
+                <div class="services-segment-box">
+                    <h3 class="services-segment-title">SWOT</h3>
+                    
+                    <div class="swot-grid">
+                        <div class="swot-item"><span class="swot-type">Forces</span><span class="swot-desc">Identité fondatrice, modèle diversifié (digital + physique + nutrition), discours déculpabilisant</span></div><div class="swot-item"><span class="swot-type">Faiblesses</span><span class="swot-desc">Dépendance à l&#x27;image fondatrice, marché compléments saturé</span></div><div class="swot-item"><span class="swot-type">Opportunités</span><span class="swot-desc">Gamme Plaisirs Gourmands, optimisation rétention / programme fidélité</span></div><div class="swot-item"><span class="swot-type">Menaces</span><span class="swot-desc">YouTube/TikTok gratuits, algorithmes limitant la portée organique</span></div>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-infographic" aria-hidden="true">
+                    <p class="services-infographic-label">Axe de placement — Positionnement produit et concurrence</p>
+                    
+                    <div class="positioning-matrix" aria-hidden="true">
+                        <div class="matrix-axis-x"><span class="axis-label">Contenu gratuit</span><span class="axis-label">Produit premium</span></div>
+                        <div class="matrix-grid">
+                            <div class="matrix-cell matrix-cell-tl"><span class="matrix-player">YouTube / TikTok</span></div>
+                            <div class="matrix-cell matrix-cell-tr"><span class="matrix-player">Retailers</span></div>
+                            <div class="matrix-cell matrix-cell-bl"><span class="matrix-player">Luce Citron</span></div>
+                            <div class="matrix-cell matrix-cell-br"><span class="matrix-player matrix-player-fitclem">FitClem</span><span class="matrix-legend">Sport + nutrition + accessoires</span></div>
+                        </div>
+                        <div class="matrix-axis-y"><span class="axis-label">Prix bas</span><span class="axis-label">Prix élevé</span></div>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-box">
+                    <h3 class="services-segment-title">Porter</h3>
+                    <p>Concurrence très forte (Nike Training, Freeletics, influenceurs). Nouveaux entrants : barrières faibles (contenu), élevées (app). Pouvoir clients moyen. Substituts forts (salles, cours, plein air). Rôle État : contrôles sur produits minceur.</p>
+                </div>
+                
+                
+                
+                <div class="services-segment-infographic" aria-hidden="true">
+                    <p class="services-infographic-label">Étude concurrence — Positionnement FitClem vs acteurs clés</p>
+                    
+                    <div class="competitive-diagram" aria-hidden="true">
+                        <div class="comp-flow">
+                            <div class="comp-node comp-node-leader"><span class="comp-name">Trainsweateat</span><span class="comp-desc">Leader FR, app avancée</span></div>
+                            <span class="comp-arrow">→</span>
+                            <div class="comp-node comp-node-fitclem"><span class="comp-name">FitClem</span><span class="comp-desc">Approche douce, bienveillance</span></div>
+                        </div>
+                        <div class="comp-flow comp-flow-alt">
+                            <div class="comp-node"><span class="comp-name">Luce Citron</span><span class="comp-desc">Nutrition</span></div>
+                            <span class="comp-arrow">vs</span>
+                            <div class="comp-node comp-node-fitclem"><span class="comp-name">FitClem</span><span class="comp-desc">Sport + accessoires + compléments</span></div>
+                        </div>
+                        <div class="comp-flow comp-flow-alt">
+                            <div class="comp-node"><span class="comp-name">Retailers</span><span class="comp-desc">Prix, logistique</span></div>
+                            <span class="comp-arrow">vs</span>
+                            <div class="comp-node comp-node-fitclem"><span class="comp-name">FitClem</span><span class="comp-desc">Caution experte, routines</span></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-box">
+                    <h3 class="services-segment-title">Concurrentiel</h3>
+                    
+                    <table class="concurrentiel-table">
+                        <thead><tr><th>Acteur</th><th>Type</th><th>FitClem vs</th></tr></thead>
+                        <tbody><tr><td>Trainsweateat</td><td>Leader FR</td><td>FitClem = approche plus douce</td></tr><tr><td>Luce Citron</td><td>Nutrition</td><td>FitClem = sport + accessoires + compléments</td></tr><tr><td>Retailers</td><td>Prix, logistique</td><td>FitClem = caution experte, routines clés en main</td></tr></tbody>
+                    </table>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-box">
+                    <h3 class="services-segment-title">Étude SEO</h3>
+                    
+                    <ul class="services-segment-bullets">
+                        <li>Manque à gagner : 132–324 k€/an (conversion, performance, visibilité).</li><li>Problèmes : performance (LCP), erreurs 429, H1 manquants, alt images.</li><li>Clusters : cellulite, rétention d&#x27;eau, digestion, collagène marin, routine.</li><li>Recommandations : corriger technique, structurer pages, preuve sociale (UGC).</li>
+                    </ul>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-infographic" aria-hidden="true">
+                    <p class="services-infographic-label">Priorités SEO</p>
+                    
+                    <div class="content-player-dashboard">
+                        <div class="kpi-row"><span class="kpi-label">Performance (LCP)</span><div class="kpi-bar"><div class="kpi-bar-fill" style="width: 60%;"></div></div></div>
+                        <div class="kpi-row"><span class="kpi-label">Erreurs 429</span><div class="kpi-bar"><div class="kpi-bar-fill" style="width: 90%;"></div></div></div>
+                        <div class="kpi-row"><span class="kpi-label">H1 manquants</span><div class="kpi-bar"><div class="kpi-bar-fill" style="width: 75%;"></div></div></div>
+                        <div class="kpi-row"><span class="kpi-label">Alt images</span><div class="kpi-bar"><div class="kpi-bar-fill" style="width: 55%;"></div></div></div>
+                    </div>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-box">
+                    <h3 class="services-segment-title">Proposition KPI &amp; plan 30/60 j</h3>
+                    
+                    <ul class="services-segment-bullets">
+                        <li>6 KPI : CAC, CVR landing, AOV, LTV, email revenue share, rétention D30/D60.</li><li>0–30 j : audit claims, matrice créa, 3 LP dédiées, A/B tests.</li><li>30–60 j : CRM post-achat (J+7/14/28), bundles, retargeting par objectif.</li>
+                    </ul>
+                    
+                </div>
+                
+                
+                
+                <div class="services-segment-infographic" aria-hidden="true">
+                    <p class="services-infographic-label">Plan d&#x27;action</p>
+                    
+                    <div class="key-figures-timeline">
+                        <div class="key-figures-timeline-item"><span class="t-period">0–30 j</span><p class="t-desc">Audit claims, matrice créa, 3 LP, A/B tests</p></div>
+                        <div class="key-figures-timeline-item"><span class="t-period">30–60 j</span><p class="t-desc">CRM post-achat, bundles, retargeting</p></div>
+                    </div>
+                    
+                </div>
+                
+                
             </div>
+            
         </section>
         
 
